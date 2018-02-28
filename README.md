@@ -5,3 +5,5 @@
 <p>--这样就可以测试负载均衡的效果</p>
 
 <p>*在测试之前要安装consul，可以用docker来安装，安装后修改工程中的spring.cloud.consul.host即可</p>
+
+docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 -p 8500:8500 consul
