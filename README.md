@@ -7,3 +7,13 @@
 <p>*在测试之前要安装consul，可以用docker来安装，安装后修改工程中的spring.cloud.consul.host即可</p>
 
 docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 -p 8500:8500 consul
+
+当服务关闭后consul并不会自动删除掉已有的服务实例，如果需要手动删除
+
+先通过api查看:
+
+http://104.233.101.198:8500/v1/catalog/service/consul-server1
+
+会列出该服务下已注册的实例，找到实例的ServiceID，用以下api来手动删除
+
+curl -v -X PUT http://104.233.101.198:8500/v1/agent/service/deregister/$ServiceID
